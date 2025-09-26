@@ -7,6 +7,8 @@ const btnSize= document.getElementById("size");
 const container = document.getElementById("container");
 const pad = document.getElementById("pad");
 const divOne = document.getElementsByClassName("gridOne")
+const divTwo = document.getElementsByClassName("gridTwo")
+const divThree = document.getElementsByClassName("gridThree")
 // btn16.addEventListener("click",() =>{start("gridOne", 16)});
 btn16.addEventListener("click", start16);
 function start16(){
@@ -19,7 +21,7 @@ for(i=0; i<256;i++){
     div.addEventListener("mouseenter", () => {
         div.classList.add("colored");});
     pad.appendChild(div)}
-    return console.log(16)
+    return
 }
 
 btn32.addEventListener("click",start32);
@@ -32,7 +34,7 @@ for(i=0; i<1024;i++){
     div.addEventListener("mouseenter", () => {
         div.classList.add("colored");});
     pad.appendChild(div)}
-    return console.log(32)
+    return
 }
 btn64.addEventListener("click",start64);
 function start64(){
@@ -44,13 +46,49 @@ for(i=0; i<4096;i++){
     div.addEventListener("mouseenter", () => {
         div.classList.add("colored");});
     pad.appendChild(div)}
-    return console.log(64)
-}
+    return }
+    
+btnClear.addEventListener("click", clear)
 function clear(){
-    divOne.classList.remove("colored")
+    if(divOne.length > 0){
+        for(let i= divOne.length-1 ; i>=0; i--){
+            divOne.item(i).remove()
+        }
+        start16()
+    }else if(divTwo.length > 0){
+        for(let i= divTwo.length-1 ; i>=0; i--){
+            divTwo.item(i).remove()
+        }
+        start32()
+    }else if(divThree.length > 0){
+        for(let i= divThree.length-1 ; i>=0; i--){
+            divThree.item(i).remove()
+        }
+        start64()
+    }else{ console.log("probs an error bro")}
 }
+
+
+ 
+function clearOnly(){
+    if(divOne.length > 0){
+        for(let i= divOne.length-1 ; i>=0; i--){
+            divOne.item(i).remove()
+        }
+    }else if(divTwo.length > 0){
+        for(let i= divTwo.length-1 ; i>=0; i--){
+            divTwo.item(i).remove()
+        }
+    }else if(divThree.length > 0){
+        for(let i= divThree.length-1 ; i>=0; i--){
+            divThree.item(i).remove()
+        }
+    }
+}
+
 btnSize.addEventListener("click",size)
 function size(){
+    clearOnly()
     container.classList.add("active")
-    
 }
+
